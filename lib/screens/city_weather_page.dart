@@ -61,7 +61,7 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
                       style:
                           TextButton.styleFrom(backgroundColor: Colors.white12),
                       onPressed: () {
-                        Navigator.pop(context, _cityname);
+                        Navigator.pop(context, _cityname);    // the name of the city is passed back to the previous page
                       },
                       child: Text(
                         'Get Weather',
