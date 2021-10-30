@@ -89,28 +89,30 @@ class _WeatherPageState extends State<WeatherPage> {
                       SizedBox(
                         width: 60,
                         height: 60,
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () async {
-                            final cityName = await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CityWeatherPage(),
-                              ),
-                            );
-                            if (cityName != null) {
-                              var jsonResponse = await WeatherProvider()
-                                  .cityWeatherProvider(cityName);
-                              updateUI(jsonResponse);
-                            }
-                          },
-                          icon: Icon(
-                            Icons.location_city_rounded,
-                            color: Colors.white,
-                            size: 60,
-                          ),
+                        child:
+                            // IconButton(
+                            //   padding: EdgeInsets.zero,
+                            //   onPressed: () async {
+                            //     final cityName = await Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) => CityWeatherPage(),
+                            //       ),
+                            //     );
+                            //     if (cityName != null) {
+                            //       var jsonResponse = await WeatherProvider()
+                            //           .cityWeatherProvider(cityName);
+                            //       updateUI(jsonResponse);
+                            //     }
+                            //   },
+                            //icon:
+                            Icon(
+                          Icons.location_city_rounded,
+                          color: Colors.white,
+                          size: 60,
                         ),
                       ),
+                      //),
                       //Refresh Button
                       // SizedBox(
                       //   width: 60,
@@ -136,12 +138,14 @@ class _WeatherPageState extends State<WeatherPage> {
                         child: IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: () async {
+                            // city name is fetched from the next page, i.e passed back by from the CityWeatherPage
                             final cityName = await Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => CityWeatherPage(),
                               ),
                             );
+                            // when the user entered a city name then get the weather data for that city and update the UI
                             if (cityName != null) {
                               var jsonResponse = await WeatherProvider()
                                   .cityWeatherProvider(cityName);

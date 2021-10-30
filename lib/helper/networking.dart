@@ -5,6 +5,7 @@ class NetworkHelper {
   NetworkHelper(this.url);
   final String url;
 
+  //get weather data from openweathermap api
   Future getData() async {
     var response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
