@@ -16,11 +16,23 @@ class _WeatherPageState extends State<WeatherPage> {
   void initState() {
     super.initState();
     print(widget.weatherData);
+    //getDate();
+    //print(date);
     updateUI(widget.weatherData);
   }
 
   var weatherDescription, weatherId, humidity, city;
   late int temp, feelslike;
+  // String date = '';
+  // void getDate() {
+  //   var date = new DateTime.now().toString();
+  //   var dateParse = DateTime.parse(date);
+  //   var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
+  //   setState(() {
+  //     date = formattedDate.toString();
+  //   });
+  // }
+
   void updateUI(dynamic weatherData) {
     setState(() {
       if (weatherData == null) {
@@ -43,6 +55,8 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+  //DateTime dateTime = DateTime().now();
+  //dateTime.toIso8601String();
 
   @override
   Widget build(BuildContext context) {
@@ -60,36 +74,18 @@ class _WeatherPageState extends State<WeatherPage> {
         ),
         child: SafeArea(
             child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               //Top Bar
               Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      //Refresh Button
-                      SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () async {
-                            var jsonResponse = await WeatherProvider()
-                                .locationWeatherProvider();
-                            updateUI(jsonResponse);
-                          },
-                          icon: Icon(
-                            Icons.refresh_rounded,
-                            color: Colors.white,
-                            size: 55,
-                          ),
-                        ),
-                      ),
-                      //City Button
+                      //City Name
                       SizedBox(
                         width: 60,
                         height: 60,
@@ -115,16 +111,60 @@ class _WeatherPageState extends State<WeatherPage> {
                           ),
                         ),
                       ),
+                      //Refresh Button
+                      // SizedBox(
+                      //   width: 60,
+                      //   height: 60,
+                      //   child: IconButton(
+                      //     padding: EdgeInsets.zero,
+                      //     onPressed: () async {
+                      //       var jsonResponse = await WeatherProvider()
+                      //           .locationWeatherProvider();
+                      //       updateUI(jsonResponse);
+                      //     },
+                      //     icon: Icon(
+                      //       Icons.refresh_rounded,
+                      //       color: Colors.white,
+                      //       size: 55,
+                      //     ),
+                      //   ),
+                      // ),
+                      // search button
+                      SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () async {
+                            final cityName = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CityWeatherPage(),
+                              ),
+                            );
+                            if (cityName != null) {
+                              var jsonResponse = await WeatherProvider()
+                                  .cityWeatherProvider(cityName);
+                              updateUI(jsonResponse);
+                            }
+                          },
+                          icon: Icon(
+                            Icons.search_rounded,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 18),
+                    padding: const EdgeInsets.only(right: 20),
                     child: Text(
                       "$city",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: Colors.white, fontSize: 26),
                     ),
                   )
                 ],
