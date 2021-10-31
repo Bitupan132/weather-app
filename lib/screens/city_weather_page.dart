@@ -63,7 +63,9 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
                   children: [
                     TextButton(
                       style: TextButton.styleFrom(
-                          backgroundColor: Colors.blue[200], elevation: 10),
+                          backgroundColor: Colors.blue[200],
+                          elevation: 10,
+                          minimumSize: Size(160, 50)),
                       onPressed: () {
                         Navigator.pop(context,
                             _cityname); // the name of the city is passed back to the previous page
