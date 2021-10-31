@@ -1,6 +1,6 @@
 import 'package:weather_app/helper/location.dart';
 import 'package:weather_app/helper/networking.dart';
-import 'package:weather_app/apikey.dart';
+import 'package:weather_app/secret_key.dart';
 
 const apikey = api_key;
 const unit = 'metric';
