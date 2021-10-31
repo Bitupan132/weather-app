@@ -73,133 +73,146 @@ class _WeatherPageState extends State<WeatherPage> {
           ),
         ),
         child: SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              //Top Bar
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      //City Name
-                      SizedBox(
-                        width: 60,
-                        height: 60,
-                        child:
-                            // IconButton(
-                            //   padding: EdgeInsets.zero,
-                            //   onPressed: () async {
-                            //     final cityName = await Navigator.push(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //         builder: (context) => CityWeatherPage(),
-                            //       ),
-                            //     );
-                            //     if (cityName != null) {
-                            //       var jsonResponse = await WeatherProvider()
-                            //           .cityWeatherProvider(cityName);
-                            //       updateUI(jsonResponse);
-                            //     }
-                            //   },
-                            //icon:
-                            Icon(
-                          Icons.location_city_rounded,
-                          color: Colors.white,
-                          size: 60,
-                        ),
-                      ),
-                      //),
-                      //Refresh Button
-                      // SizedBox(
-                      //   width: 60,
-                      //   height: 60,
-                      //   child: IconButton(
-                      //     padding: EdgeInsets.zero,
-                      //     onPressed: () async {
-                      //       var jsonResponse = await WeatherProvider()
-                      //           .locationWeatherProvider();
-                      //       updateUI(jsonResponse);
-                      //     },
-                      //     icon: Icon(
-                      //       Icons.refresh_rounded,
-                      //       color: Colors.white,
-                      //       size: 55,
-                      //     ),
-                      //   ),
-                      // ),
-                      // search button
-                      SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () async {
-                            // city name is fetched from the next page, i.e passed back by from the CityWeatherPage
-                            final cityName = await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CityWeatherPage(),
-                              ),
-                            );
-                            // when the user entered a city name then get the weather data for that city and update the UI
-                            if (cityName != null) {
-                              var jsonResponse = await WeatherProvider()
-                                  .cityWeatherProvider(cityName);
-                              updateUI(jsonResponse);
-                            }
-                          },
-                          icon: Icon(
-                            Icons.search_rounded,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            // child: RefreshIndicator(
+            //   color: Colors.white,
+            //   backgroundColor: Colors.purple,
+            //   triggerMode: RefreshIndicatorTriggerMode.anywhere,
+            //   onRefresh: () async {
+            //     await Future.delayed(Duration(seconds: 1));
+            //     var jsonResponse =
+            //         await WeatherProvider().locationWeatherProvider();
+            //     updateUI(jsonResponse);
+            //   },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //Top Bar
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //City Name
+                        SizedBox(
+                          width: 60,
+                          height: 60,
+                          child:
+                              // IconButton(
+                              //   padding: EdgeInsets.zero,
+                              //   onPressed: () async {
+                              //     final cityName = await Navigator.push(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //         builder: (context) => CityWeatherPage(),
+                              //       ),
+                              //     );
+                              //     if (cityName != null) {
+                              //       var jsonResponse = await WeatherProvider()
+                              //           .cityWeatherProvider(cityName);
+                              //       updateUI(jsonResponse);
+                              //     }
+                              //   },
+                              //icon:
+                              Icon(
+                            Icons.location_city_rounded,
                             color: Colors.white,
-                            size: 40,
+                            size: 60,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Text(
-                      "$city",
-                      style: TextStyle(color: Colors.white, fontSize: 26),
-                    ),
-                  )
-                ],
-              ),
+                        //),
+                        //Refresh Button
+                        // SizedBox(
+                        //   width: 60,
+                        //   height: 60,
+                        //   child: IconButton(
+                        //     padding: EdgeInsets.zero,
+                        //     onPressed: () async {
+                        //       var jsonResponse = await WeatherProvider()
+                        //           .locationWeatherProvider();
+                        //       updateUI(jsonResponse);
+                        //     },
+                        //     icon: Icon(
+                        //       Icons.refresh_rounded,
+                        //       color: Colors.white,
+                        //       size: 55,
+                        //     ),
+                        //   ),
+                        // ),
 
-              Column(
-                //kam kora nai alignment e
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    "$temp°",
-                    style: TextStyle(color: Colors.white, fontSize: 80),
-                  ),
-                  Text(
-                    capitalize(weatherDescription),
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  Text(
-                    "Real Feel: $feelslike°",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  Text(
-                    "Humidity: $humidity%",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ],
-              ),
-            ],
+                        // search button
+                        SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () async {
+                              // city name is fetched from the next page, i.e passed back by from the CityWeatherPage
+                              final cityName = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CityWeatherPage(),
+                                ),
+                              );
+                              // when the user entered a city name then get the weather data for that city and update the UI
+                              if (cityName != null) {
+                                var jsonResponse = await WeatherProvider()
+                                    .cityWeatherProvider(cityName);
+                                updateUI(jsonResponse);
+                              }
+                            },
+                            icon: Icon(
+                              Icons.search_rounded,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Text(
+                        "$city",
+                        style: TextStyle(color: Colors.white, fontSize: 26),
+                      ),
+                    )
+                  ],
+                ),
+
+                Column(
+                  //kam kora nai alignment e
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      "$temp°",
+                      style: TextStyle(color: Colors.white, fontSize: 80),
+                    ),
+                    Text(
+                      capitalize(weatherDescription),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    Text(
+                      "Real Feel: $feelslike°",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    Text(
+                      "Humidity: $humidity%",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            //),
           ),
-        )),
+        ),
       ),
     );
   }
