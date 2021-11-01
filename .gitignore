@@ -50,3 +50,7 @@ app.*.map.json
 
 #API KEY RELATED
 secret_key.dart
+
+#Playstore Related
+/android/key.properties
+upload-keystore.jks
