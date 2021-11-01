@@ -25,7 +25,11 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // SizedBox(
+                //   height: 20,
+                // ),
                 TextField(
                   onChanged: (value) {
                     _cityname = value;
@@ -37,36 +41,39 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
                     fillColor: Color(0xffFFFFFF),
                     filled: true,
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red),
+                      borderSide: BorderSide(color: Colors.blue),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
+                      borderSide: BorderSide(color: Colors.blue),
                     ),
                     prefixIcon: Icon(
                       Icons.location_city_outlined,
-                      //color: Colors.green,
+                      color: Colors.blue,
                     ),
                     //icon: Icon(Icons.location_city),
                     //focusColor: Color(0xff008080),
                     //hoverColor: Color(0xff008080),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                // SizedBox(
+                //   height: 20,
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
-                      style:
-                          TextButton.styleFrom(backgroundColor: Colors.white12),
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.blue[200],
+                          elevation: 10,
+                          minimumSize: Size(160, 50)),
                       onPressed: () {
-                        Navigator.pop(context, _cityname);
+                        Navigator.pop(context,
+                            _cityname); // the name of the city is passed back to the previous page
                       },
                       child: Text(
                         'Get Weather',
                         style: TextStyle(
-                          color: Colors.blueGrey[800],
+                          color: Colors.blueGrey[900],
                           fontSize: 24,
                         ),
                       ),
