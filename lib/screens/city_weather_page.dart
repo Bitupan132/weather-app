@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class CityWeatherPage extends StatefulWidget {
   const CityWeatherPage({Key? key}) : super(key: key);
@@ -16,7 +17,12 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/city_background.jpg'),
+              image:
+                  //Svg('images/alien.svg'),
+                  //Svg('..images/virus_bg.svg'),
+                  //AssetImage('images/city_background.jpg'),
+                  AssetImage('images/virus.png'),
+              // AssetImage('images/city_bg.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                   Colors.white.withOpacity(0.4), BlendMode.dstATop),
@@ -63,8 +69,10 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
                   children: [
                     TextButton(
                       style: TextButton.styleFrom(
-                          backgroundColor: Colors.blue[200],
-                          elevation: 10,
+                          backgroundColor:
+                              //Colors.blue[200],
+                              Colors.yellow[100],
+                          elevation: 20,
                           minimumSize: Size(160, 50)),
                       onPressed: () {
                         Navigator.pop(context,

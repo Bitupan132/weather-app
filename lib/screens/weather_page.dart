@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:weather_app/helper/image_provide.dart';
 import 'package:weather_app/helper/weather_provider.dart';
 import 'package:weather_app/screens/city_weather_page.dart';
+import 'package:intl/intl.dart';
 
 class WeatherPage extends StatefulWidget {
   final weatherData;
@@ -12,18 +14,22 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
+  String _timeString = '';
+  String _dateString = '';
   @override
   void initState() {
     super.initState();
     print(widget.weatherData);
-    //getDate();
+    // getDate();
     //print(date);
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     updateUI(widget.weatherData);
   }
 
   var weatherDescription, weatherId, humidity, city;
   late int temp, feelslike;
   // String date = '';
+  //String time = '';
   // void getDate() {
   //   var date = new DateTime.now().toString();
   //   var dateParse = DateTime.parse(date);
@@ -33,6 +39,14 @@ class _WeatherPageState extends State<WeatherPage> {
   //   });
   // }
 
+  // void getTime() {
+  //   var time = new DateTime.now().toString();
+  //   var timeParse = DateTime.parse(time);
+  //   var formattedTime = "${timeParse.hour}:${timeParse.minute}";
+  //   setState(() {
+  //     time = formattedTime.toString();
+  //   });
+  // }
   void updateUI(dynamic weatherData) {
     setState(() {
       if (weatherData == null) {
@@ -58,18 +72,30 @@ class _WeatherPageState extends State<WeatherPage> {
   //DateTime dateTime = DateTime().now();
   //dateTime.toIso8601String();
 
+  void _getTime() {
+    final String formattedTime =
+        DateFormat('kk:mm').format(DateTime.now()).toString();
+    final String formattedDate =
+        DateFormat('dd-MM-yyyy').format(DateTime.now()).toString();
+    setState(() {
+      _timeString = formattedTime;
+      _dateString = formattedDate;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ProvideImage imagePathProvider = ProvideImage(weatherId);
     String imagePath = imagePathProvider.getImagePath();
+    //String imagePath = 'images/weather_bg.jpg';
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(imagePath),
             fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.6), BlendMode.dstATop),
+            // colorFilter: ColorFilter.mode(
+            //     Colors.white.withOpacity(0.6), BlendMode.dstATop),
           ),
         ),
         child: SafeArea(
@@ -108,49 +134,12 @@ class _WeatherPageState extends State<WeatherPage> {
                                 SizedBox(
                                   width: 60,
                                   height: 60,
-                                  child:
-                                      // IconButton(
-                                      //   padding: EdgeInsets.zero,
-                                      //   onPressed: () async {
-                                      //     final cityName = await Navigator.push(
-                                      //       context,
-                                      //       MaterialPageRoute(
-                                      //         builder: (context) => CityWeatherPage(),
-                                      //       ),
-                                      //     );
-                                      //     if (cityName != null) {
-                                      //       var jsonResponse = await WeatherProvider()
-                                      //           .cityWeatherProvider(cityName);
-                                      //       updateUI(jsonResponse);
-                                      //     }
-                                      //   },
-                                      //icon:
-                                      Icon(
+                                  child: Icon(
                                     Icons.location_city_rounded,
                                     color: Colors.white,
                                     size: 60,
                                   ),
                                 ),
-                                //),
-                                //Refresh Button
-                                // SizedBox(
-                                //   width: 60,
-                                //   height: 60,
-                                //   child: IconButton(
-                                //     padding: EdgeInsets.zero,
-                                //     onPressed: () async {
-                                //       var jsonResponse = await WeatherProvider()
-                                //           .locationWeatherProvider();
-                                //       updateUI(jsonResponse);
-                                //     },
-                                //     icon: Icon(
-                                //       Icons.refresh_rounded,
-                                //       color: Colors.white,
-                                //       size: 55,
-                                //     ),
-                                //   ),
-                                // ),
-
                                 // search button
                                 SizedBox(
                                   width: 50,
@@ -193,7 +182,9 @@ class _WeatherPageState extends State<WeatherPage> {
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 26),
                               ),
-                            )
+                            ),
+                            Text(_dateString),
+                            Text(_timeString),
                           ],
                         ),
 

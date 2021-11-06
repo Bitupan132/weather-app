@@ -2,20 +2,20 @@ class ProvideImage {
   final int weatherId;
 
   ProvideImage(this.weatherId);
-  String getImagePath(){
+  String getImagePath() {
     //default
-    String imagePath = 'images/location_background.jpg';
+    String imagePath = 'images/location_background.png';
     //thunderstorm
     if (weatherId >= 200 && weatherId < 300) {
-      imagePath = 'images/thunderstorm.jpg';
+      imagePath = 'images/thunderstorm.png';
     }
     //Drizzle
     else if (weatherId >= 300 && weatherId < 400) {
-      imagePath = 'images/drizzle.jpg';
+      imagePath = 'images/rain.png';
     }
     //Rain
     else if (weatherId >= 500 && weatherId < 600) {
-      imagePath = 'images/rain.jpg';
+      imagePath = 'images/rain.png';
     }
     //snow
     else if (weatherId >= 600 && weatherId < 700) {
@@ -24,17 +24,16 @@ class ProvideImage {
 
     //clear
     else if (weatherId == 800) {
-      imagePath = 'images/clear.jpg';
+      imagePath = 'images/clear.png';
     }
     //overcast
     else if (weatherId == 804) {
-      imagePath = 'images/overcast.jpg';
+      imagePath = 'images/cloudy.png';
     }
     //cloudy
     else if (weatherId > 800 && weatherId < 804) {
-      imagePath = 'images/cloudy.jpg';
+      imagePath = 'images/cloudy.png';
     }
     return imagePath;
   }
-  
 }
