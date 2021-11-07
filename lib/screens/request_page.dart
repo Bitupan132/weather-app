@@ -13,8 +13,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   void getLocationAndWeather() async {
     var jsonResponse = await WeatherProvider().locationWeatherProvider();
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => WeatherPage(jsonResponse)));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WeatherPage(jsonResponse),
+      ),
+    );
   }
 
   @override

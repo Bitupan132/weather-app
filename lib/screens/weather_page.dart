@@ -98,7 +98,7 @@ class _WeatherPageState extends State<WeatherPage> {
               onRefresh: () async {
                 await Future.delayed(Duration(seconds: 1));
                 var jsonResponse =
-                    await WeatherProvider().locationWeatherProvider();
+                    await WeatherProvider().cityWeatherProvider(city);
                 updateUI(jsonResponse);
               },
               child: LayoutBuilder(
@@ -116,6 +116,7 @@ class _WeatherPageState extends State<WeatherPage> {
                       children: [
                         // Upper Part
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             //Top Bar
@@ -170,6 +171,7 @@ class _WeatherPageState extends State<WeatherPage> {
                                     ),
                                   ],
                                 ),
+                                //City Name
                                 Padding(
                                   padding: const EdgeInsets.only(right: 20),
                                   child: Text(
@@ -178,11 +180,13 @@ class _WeatherPageState extends State<WeatherPage> {
                                         color: Colors.white, fontSize: 26),
                                   ),
                                 ),
+                                //Date
                                 Text(
                                   _dateString,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 26),
                                 ),
+                                //Time
                                 Text(
                                   _timeString,
                                   style: TextStyle(
@@ -190,7 +194,10 @@ class _WeatherPageState extends State<WeatherPage> {
                                 ),
                               ],
                             ),
-
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * .3,
+                            ),
+                            //Includes Temperature, min-max Temp, and Description
                             Column(
                               //mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,14 +210,14 @@ class _WeatherPageState extends State<WeatherPage> {
                                 Text(
                                   '$minTemp\u2103 / $maxTemp\u2103',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.white54,
                                     fontSize: 18,
                                   ),
                                 ),
                                 Text(
                                   capitalize(weatherDescription),
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.white54,
                                     fontSize: 18,
                                   ),
                                 ),
