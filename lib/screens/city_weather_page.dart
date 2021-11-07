@@ -25,7 +25,7 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
               // AssetImage('images/city_bg.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(0.4), BlendMode.dstATop),
+                  Colors.black.withOpacity(0.4), BlendMode.darken),
             ),
           ),
           child: Padding(
@@ -33,9 +33,6 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // SizedBox(
-                //   height: 20,
-                // ),
                 TextField(
                   onChanged: (value) {
                     _cityname = value;
@@ -56,22 +53,14 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
                       Icons.location_city_outlined,
                       color: Colors.blue,
                     ),
-                    //icon: Icon(Icons.location_city),
-                    //focusColor: Color(0xff008080),
-                    //hoverColor: Color(0xff008080),
                   ),
                 ),
-                // SizedBox(
-                //   height: 20,
-                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
                       style: TextButton.styleFrom(
-                          backgroundColor:
-                              //Colors.blue[200],
-                              Colors.yellow[100],
+                          backgroundColor: Colors.blue[400],
                           elevation: 20,
                           minimumSize: Size(160, 50)),
                       onPressed: () {
@@ -81,7 +70,7 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
                       child: Text(
                         'Get Weather',
                         style: TextStyle(
-                          color: Colors.blueGrey[900],
+                          color: Colors.blueGrey[800],
                           fontSize: 24,
                         ),
                       ),

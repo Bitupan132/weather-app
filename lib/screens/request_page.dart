@@ -29,11 +29,12 @@ class _MyHomePageState extends State<MyHomePage> {
       //body: Container(child: Center(child: SpinKitPouringHourGlassRefined(color: Colors.orange,size: 90.0,),),),
       body: Container(
         child: Center(
-          child: Image.asset('icons/splash_icon.png'),
-          // SpinKitFadingFour(
-          //   color: Colors.black,
-          //   size: 80,
-          // ),
+          child:
+              // Image.asset('icons/splash_icon.png'),
+              SpinKitFadingFour(
+            color: Colors.black,
+            size: 80,
+          ),
         ),
       ),
     );
